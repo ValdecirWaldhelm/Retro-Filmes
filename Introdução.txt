@@ -1,0 +1,108 @@
+Iniciando um Projeto em Node + React + Next
+
+ DEPENDECIA DE INICIO
+ {
+   "scripts": {
+     "dev": "next dev",
+     "build": "next build",
+     "start": "next start",
+     "lint": "next lint"
+   },
+   "dependencies": {
+     "next": "13.0.3",
+     "react": "18.2.0",
+     "react-dom": "18.2.0"
+   }
+ }
+
+1 - Criar a pasta do projeto
+
+2 - Abrir o terminal do VSC
+
+3 - Setar o código e verificar node -v npm -v, para ver as versões
+
+4 - Depois clear "limpa" o terminal
+
+5 - Depois npm install next react react-dom, para instalar as 3 ferramentas para iniciar o projeto
+
+6 - Ao final da instalação temos "node_modules" "package-lock.json" "package.json"
+
+7 - No "package.json" "react": "^18.2.0", o chapéu significa como auto identificação de atualização então é sempre bom tirar para que todos tenham o mesma versão, então elimina o problema de atualização de uma lib sem consentimento o qual "na minha maquina funciona e na sua não" o último índice no caso é o "mainor" que causa erro de inconsistência 
+
+9 - Logo em seguida instala os scripts do Next.js geralmente indicado no site do Next no arquivo package.json, aonde e "chave" é o nome que se utiliza para rodar e "valor" é o comando do next preparado, atalhos! Tipo npm scripts.
+
+10 - Ao usar o comando npm run dev, RUN é para rodar, dá ERRO porque deve-se, criar no main
+OBS: Mensagem de ERRO Couldn't find a `pages` directory. Please create one under the project root
+
+11 - Cria-se então o diretorio "pages" como pasta e logo em seguida "npm run dev", após ele cria o ambiente em forma de servidor e apresenta, nesse caso, started server on 0.0.0.0:3000, url: http://localhost:3000, passando a URL
+
+12 - Se aparecer essa mensagem, o Next está coletando informações devido a ter crescido muito: Attention: 
+Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+13 - Se aparecer o erro "This page could not be found" porque não tem nada no page
+
+14 - Dentro do diretório pages, adicione o arquivo index.js para começar. Esta é a página renderizada quando o usuário visita a raiz do seu aplicativo. E coloca a função descrita
+
+15 - O servidor automaticamente, como se fosse um liveserver, o comando para parar o servidor e "crtl + c", e para rodar novamente é "npm run dev"
+
+16 - Diferentemente do CSS que usa classe e Id o qual mexe e quebra todos os demais, aqui no React usa-se por bloco o CSS são independentes
+<div style={cssHome}>PRIMEIRO PROJETO REACT E NEXT JS</div>
+const texto = "PRIMEIRO PROJETO REACT E NEXT JS"
+<div style={cssHome}>{texto}</div>
+Parece bastante com a linguagem Liquid
+
+18 - OBS sempre que quiser trabalhar div com return coloca-se (<div></div>), porque nesse caso dá para trabalhar mais com espaço e mais elementos, fica uma espécie de array, não se pode usar o style normal como em um documento HTML, deve-se passar um objeto como um json e nele on style css que deve ser utilizado. EX: style={{color: "red"}} 
+
+19 - Criando uma constante variavel deve-se usar como somente uma chave {estilo CSS}
+
+20 - A forma de se usar um componente cria-se a função e depois usa-se como Tag igual ao HTML,
+
+21 - Usa-se como parte de Back-end o arquivo Json para testes, criado como config.json e logo em seguida usando o import config from "../config.json"
+
+22 - Logo em seguida para que o CSS funcione de forma completa inclusive como Media Queries, o estilo acima mencionado nçao deve ser usado, então instala-se uma lib chamada styled-components
+comando : npm install styled-components
+
+23 - Logo após usar o vercel next js no github https://github.com/vercel/next.js:
+Entra no link https://github.com/vercel/next.js/tree/canary/examples/with-styled-components e procura next.config.js e copia o código para inserir em um novo arquivo com mesmo nome no projeto, depois importa no index.js através do código import styled from "styled-components"; 
+
+24 - Estilizando uma div dentro do React, constrói uma constante e logo em seguida personaliza e deve substituir a "div" pela constante;
+
+25 - Pode colocar também uma extensão VSC styled-components, para uso em React;
+
+26 - Sendo assim pode também usar class mas como "className", para evitar conflito no React;
+
+27 - Pode=se usar normalmente h2, p, h6, etc...
+
+28 - Conceito props, passa valores ao componente;
+
+29 - Depois de construído os dados no caso pelo config.json e inserir aqui <Timeline playlist={config.playlist}></Timeline>, depois usa-se o props como pramtero dentro de uma função
+
+30 - Ctrl + click leva ao documento apontando pelo mouse no VSC;
+
+31 - Se precisar passar conteúdo dentro de um componente abre ele e depois coloca no meio; 
+Ex: <Timeline playlist={config.playlist}>
+            Conteudo
+        </Timeline>
+
+Entrando assim como filho: children: "Conteudo"
+
+32 -  Uso de Object.keys(), deve-se usar como forma de array para resgatar a chave de um array;
+
+33 - Para trabalhar com React deve-se dominar objeto, arrays e função;
+
+34 - Loop for tradicional chama-se de statement, mais no caso do React ele prefere o retorno por expressão:
+Ex: [1,2,3].forEach(function(){ return "aaa"})
+undefined => retorna como undefined;
+Ex:[1,2,3].map(function(){ return "aaa"})
+['aaa', 'aaa', 'aaa'] => retorna valor pelo map
+É sempre mais usado o map para fazer loop já que ele retorna
+
+35 - Crtl + shift + P formatar documento no VSC
+
+36 - Para implementar um arquivo css.js deve-se criar em uma pasta e separar para maior organização, no caso do CSSReset, ele é implementado de forma global, não esquecer de colocar o Import;
+
+37 - 
+
