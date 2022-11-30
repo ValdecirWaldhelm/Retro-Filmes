@@ -1,7 +1,31 @@
+
 {
+    "bg": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     "name": "Valdecir Waldhelm Morgado",
     "job": "Front End Developer",
     "github": "ValdecirWaldhelm",
+    "favorites": {
+        "Usuários": [
+            {
+                "imagem": "https://yt3.ggpht.com/PLJCxjxQWKikOXHbdOEj59ZoVnSpOpDRpa_7XxA_4eRpxD_XMyuQjasz8XGSwr-V08KwoGHW4A=s176-c-k-c0x00ffffff-no-rj-mo",
+                "name": "Paulo",
+                "job": "CEO Alura",
+                "perfil": "https://www.youtube.com/c/Alura"
+            },
+            {
+                "imagem": "https://yt3.ggpht.com/m8Yrqf0Y81L4mZ1Cq7rGnJ4NDHe6729rxiFZvWyy9-xd_Z7Osmza7J8NWpN1axMHcCb1oKJNgA=s176-c-k-c0x00ffffff-no-rj-mo",
+                "name": "Dev Soutinho",
+                "job": "Front End Developer",
+                "perfil": "https://www.youtube.com/c/DevSoutinho"
+            },
+            {
+                "imagem": "//yt3.ggpht.com/XzFi2DjRBsGdxQDGfSTWUBm0KDE0EdqVO1vfoEBmnZdACYUPl9YHLzMqG-2RpQSRwgOHiwvmvA=s176-c-k-c0x00ffffff-no-rj-mo",
+                "name": "Valdecir Waldhelm Morgado",
+                "job": "Front End Developer",
+                "perfil": "https://www.youtube.com/@valdecir9876"
+            }
+        ]
+    },
     "playlist": {
         "jogos": [
             {
@@ -130,5 +154,6 @@
               "thumb": "https://img.youtube.com/vi/0JWMVc1CqpA/hqdefault.jpg"
             }
           ]
+          
     }
 }

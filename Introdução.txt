@@ -7,7 +7,7 @@ Iniciando um Projeto em Node + React + Next
      "build": "next build",
      "start": "next start",
      "lint": "next lint"
-   },
+   }, 
    "dependencies": {
      "next": "13.0.3",
      "react": "18.2.0",
@@ -61,6 +61,7 @@ Parece bastante com a linguagem Liquid
 20 - A forma de se usar um componente cria-se a função e depois usa-se como Tag igual ao HTML,
 
 21 - Usa-se como parte de Back-end o arquivo Json para testes, criado como config.json e logo em seguida usando o import config from "../config.json"
+Neste caso o "./" significa a pasta aonde vc está
 
 22 - Logo em seguida para que o CSS funcione de forma completa inclusive como Media Queries, o estilo acima mencionado nçao deve ser usado, então instala-se uma lib chamada styled-components
 comando : npm install styled-components
@@ -78,7 +79,7 @@ Entra no link https://github.com/vercel/next.js/tree/canary/examples/with-styled
 
 28 - Conceito props, passa valores ao componente;
 
-29 - Depois de construído os dados no caso pelo config.json e inserir aqui <Timeline playlist={config.playlist}></Timeline>, depois usa-se o props como pramtero dentro de uma função
+29 - Depois de construído os dados no caso pelo config.json e inserir aqui <Timeline playlist={config.playlist}></Timeline>, depois usa-se o props como parametro dentro de uma função
 
 30 - Ctrl + click leva ao documento apontando pelo mouse no VSC;
 
@@ -89,7 +90,7 @@ Ex: <Timeline playlist={config.playlist}>
 
 Entrando assim como filho: children: "Conteudo"
 
-32 -  Uso de Object.keys(), deve-se usar como forma de array para resgatar a chave de um array;
+32 - Uso de Object.keys(), deve-se usar como forma de array para resgatar a chave de um array;
 
 33 - Para trabalhar com React deve-se dominar objeto, arrays e função;
 
@@ -97,12 +98,82 @@ Entrando assim como filho: children: "Conteudo"
 Ex: [1,2,3].forEach(function(){ return "aaa"})
 undefined => retorna como undefined;
 Ex:[1,2,3].map(function(){ return "aaa"})
-['aaa', 'aaa', 'aaa'] => retorna valor pelo map
-É sempre mais usado o map para fazer loop já que ele retorna
+['aaa', 'aaa', 'aaa'] => retorna valor pelo map, 
+ Sendo assim é convertido da lista de nomes para um componente React;
+ O mesmo sendo usado em lista de Favoritos;
+
+É sempre mais usado o map para fazer loop já que ele retorna por expressão;
+- Para se usar o props(propriedades) primeiro:
+- deve-se criar uma variável, e resgatar Object.keys(objeto chave) do array list de nome principal caso "playlist";
+- {playlistFavorites.map((playlistFavorites) => depois usa-se a variavel resgatando em arrow function
 
 35 - Crtl + shift + P formatar documento no VSC
 
 36 - Para implementar um arquivo css.js deve-se criar em uma pasta e separar para maior organização, no caso do CSSReset, ele é implementado de forma global, não esquecer de colocar o Import;
 
-37 - 
+37 - Colocar projeto no repositório Github => git init
+Cuidado quando colocar esse comando para evitar as pastas desnecessárias como "next" e "node_modules"
+Então deve colocar o comando => npx gitignore node
+Fazendo assim com que os arquivos caiam somente os necessários do projeto
+Depois em seguida => git status´para ver como está o projeto em seus arquivos
+Depois logo em seguida quando se cria o repósitorio tem o passo a passo mais não esquecer de colocar o git add .
 
+38 - Ao mudar um arquivo o CSV dá a opção de mudar automaticamente a rota do diretorio;
+Ou ainda mudar o nome do arquivo no caso de "Menu.js" para "index.js" o react adiciona um atalho para o index.js(página inicial);
+Além de fazer o auto import de arquivos;
+
+39 - Toda vez que o usuário faz alguma alteração o React possui uma função chamada onchange o qual carrega uma interação nova;
+Tipo (addEventeListener);
+
+40 - React.useState(); É como se fosse uma função de reexecutar algo na página como se reenderização; Usado muito ao clicar em um campo de busca e cada letra e renderiza algo;
+Ex: Search => Nome Busca
+(2) ['frost', ƒ]
+0       => índice "0" é o valor da busca;
+: 
+"frost"
+1       => índice "1" é a função do react que mudar a cada caraceter digitado e pede para recarregar a página;
+
+Para ter uma busca que muda a cada carecter deve-se usar primeiro parametro para o "valorDaBusca" e o segundo parametro é para setar o valor da busca "setValordaBusca";
+Ex: const [valorDaBusca, setValordaBusca] = React.useState();
+
+Mais EX:
+
+export default function Search(){
+  const [valorDaBusca, setValorDaBusca] = React.useState("Teste");
+  console.log("Search", valorDaBusca);
+  return(
+    <StyledSearch>
+      <input type="text" onChange={() => {
+        console.log("Algo aconteceu!");
+        setValorDaBusca("Novo Valor!");
+
+      }} />
+      {/* Aqui pode se usar a variavel como valor de busca ou placeholder */}
+      {valorDaBusca} 
+      <button>
+      🔎
+      </button>
+    </StyledSearch>
+  )
+
+
+41 - O maior problema de quem começa no REACT é o fato de criar components é tranquilo mais sincronizar eles é o mais difícil;
+
+42 - no caso valor da busca está no menu mais a timeline está sendo renderizado na home, como juntar os components para realizar a busca?
+
+43 - Resposta: quem chama os dois componentes no caso é a HOME, então pega-se o valor da variavel filtro e passa para a Timeline; Usando assim a propriedade tipo EX: searchValue={variavel valor do search}
+
+44 - O modelo de atualização do React e "top down" de cima para baixo, o fluxo da informação e sempre para baixo;
+O React não faz a comunicação de components de filho para pai e pai para filho, já no angular essa comunicação é feita normalmente;
+
+46 - deve repassar o valor do filtro para o Menu para então ele entenda quais valores são válidos;
+
+47 - Prop Drilling => perfurando componentes e aplicações e ir passando valores em top down;
+
+48 - com o problema do Search de capitalize deve-se usar um conceito chamado Normalize;
+
+49 - Pode-se usar o quokkajs como extensão do VSC para melhor aprendizado com console.log do que sai em um array ou ainda ver o que está acontecendo com código 
+
+50 - ERRO React "Each child in a list should have a unique "key" prop." 
+Sempre que fizer um Map é importante o React saber que o elemento é único e não renderizar toda a página, não renderizando assim o bloco inteiro e somente o que muda;
+Sendo assim o React otimiza os Rerenders

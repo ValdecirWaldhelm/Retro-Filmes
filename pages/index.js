@@ -1,21 +1,26 @@
 // IMPORTS 
-import config from "../config.json";
+import React from "react";
 import styled from "styled-components";
+import config from "../config.json";
 import {CSSReset} from "../src/components/CSSReset";
-import Menu from "../src/components/Menu";
+import { StyledFavorites } from "../src/components/Favorites";
+import { StyledHeader } from "../src/components/Header";
+import Menu from "../src/components/menu";
 import { StyledTimeline } from "../src/components/Timeline";
 
 
 function HomePage() {
-    return (
+    const [valorDoFiltro, setValorDoFiltro] = React.useState("");
+    // const valorDoFiltro = "Angular"; 
+    return (    
         <>
             <CSSReset />
             <div>
-                <Menu />
+                {/* Prop Drilling */}
+                <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro}/>
                 <Header />
-                <Timeline playlist={config.playlist}>
-                    Conteudo
-                </Timeline>
+                <Timeline searchValue={valorDoFiltro} playlist={config.playlist} />
+                <Favoritos favorites={config.favorites} />
             </div>
         </>
     )
@@ -23,37 +28,18 @@ function HomePage() {
   
 export default HomePage
 
-//MENU
-// function Menu(){
-//     return(
-//         <div>
-//             Menu
-//         </div>
-//     )
-
-// }
-
-//HEADER STYLED
-const StyledHeader = styled.div`
-    img{
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-    }
-    .user-info{
-        padding: 0 30px;
-        margin-top: 80px;
-        display: flex;
-        align-items: center;
-    }
-    .image-info{
-        margin-right: 20px;
-    }
+//HEADER BANNER
+const StyledBanner = styled.div`
+    background-color: blue;
+    background-image: url(${({ bg }) => bg});
+    /* background-image: url(${config.bg}); */
+    height: 300px;
 `;
-//HEADER
 function Header(){
     return(
         <StyledHeader>
+            {/* Passando o banner como Prop nem sempre vai ter um config global */}
+            <StyledBanner bg={config.bg} />
             <section className="user-info">
                 <div className="image-info">
                     <img src={`https://github.com/${config.github}.png`} />  
@@ -69,8 +55,8 @@ function Header(){
 }
 
 //TIMELINE
-// props = propriedades
-function Timeline(props){
+// props = propriedades, logo abaixo passando o valor variavel de search em  parametros e recuperando a variavel passando para dentro da function no lugar do "valorDoFiltro", MAS DEVE USAR COMO OBJETO
+function Timeline({searchValue, ...props}){
     // console.log("Dentro do componente ",props);
     const playlistNames = Object.keys(props.playlist)
     return(
@@ -79,13 +65,20 @@ function Timeline(props){
                 <StyledTimeline>
                     {playlistNames.map((playlistNames) => {
                         const videos = props.playlist[playlistNames];
+                        // console.log(videos);
                         return (
-                            <section>
+                            <section key={playlistNames}>
                                 <h2>{playlistNames}</h2>
                                 <div>
-                                    {videos.map((video) => {
+                                    {videos
+                                    .filter((video) => {
+                                        const titleNormalized = video.title.toLowerCase();
+                                        const searchValueNormalized = searchValue.toLowerCase();
+                                        return titleNormalized.includes(searchValueNormalized);
+                                    })
+                                    .map((video) => {
                                         return(
-                                            <a href={video.url}>
+                                            <a key={video.url} target="_blank" href={video.url}>
                                                 <img src={video.thumb}/>
                                                 <span>
                                                     {video.title}
@@ -101,3 +94,35 @@ function Timeline(props){
         </section>
     )
 }
+
+//FAVORITOS
+function Favoritos(props){
+    const playlistFavorites = Object.keys(props.favorites)
+    return(
+        <section>
+            <StyledFavorites>
+                {playlistFavorites.map((playlistFavorites) => {
+                    const users = props.favorites[playlistFavorites];
+                    // console.log(users);
+                    return (
+                        <section key={playlistFavorites}>
+                            <h2>{playlistFavorites}</h2>
+                            <div className="wrapper-favorites">
+                                {users.map((user) => {
+                                    return(
+                                        <a key={user.perfil} target="_blank" href={user.perfil}>
+                                            <img src={user.imagem}/>
+                                            <p><b>{user.name}</b></p>
+                                            <p>{user.job}</p>
+                                        </a>
+                                    )
+                                })}
+                            </div>
+                        </section>
+                    )
+                })}
+            </StyledFavorites>
+        </section>
+    )
+}
+
